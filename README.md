@@ -16,7 +16,9 @@ Note, if you are on Windows, you will be prompted to allow network access. Selec
 
 ## Connecting
 
-On Windows, use a telnet client like (PuTTY)[http://www.putty.org/]. If you're using PuTTY, be sure to connect using the `Raw` connection type. You'll be greeted with a blank window after connecting. Type in some text and press `<enter>`; your message will be repeated back to you.
+On Windows, use a telnet client like [PuTTY](http://www.putty.org/). If you're using PuTTY, be sure to connect using the `Raw` connection type. You'll be greeted with a blank window after connecting. Type in some text and press `<enter>`; your message will be repeated back to you.
+
+![Connecting with PuTTY](putty.png)
 
 ## Attack surface
 
@@ -28,4 +30,4 @@ Text is sent back to the client without processing. Text from the client is not 
 
 ## License
 
-This software is release free and unencumbered under the unlicense. Details in (LICENSE)[LICENSE]
+This software is release free and unencumbered under the unlicense. Details in [LICENSE](https://github.com/hyrmn/GoTcpEchoServer/blob/master/LICENSE)
