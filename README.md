@@ -24,7 +24,7 @@ On Windows, use a telnet client like [PuTTY](http://www.putty.org/). If you're u
 
 All connects are passed off to a goroutine. There is no connection pooling or throttling.
 
-Text from the client is read in to a byte array 1024 bytes at a time. Memory safety is left to golang.
+Text from the client is copied directly back to the client's connection. Memory safety is left to golang.
 
 Text is sent back to the client without processing. Text from the client is not logged.
 
