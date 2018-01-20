@@ -4,13 +4,24 @@ A very simple TCP echo server written in golang
 
 ## Running
 
+By default, the server will listen on port 7. You can override this via either an environment variable or command-line switch.
+
 From a command prompt, run the main.go file
 
 $>go run main.go
 
-This will start the TCP server listening on port 7. You can specify another port using the `-p` switch
+This will start the TCP server listening on port 7. 
+
+You can specify another port using the `-p` switch
 
 $>go run main.go -p 8080
+
+Or, set the environment variable `PORT`. In Powershell, you would run
+
+$>$env:PORT = 7000
+$>go run main.go
+
+This will start the TCP server on port 7000
 
 Note, if you are on Windows, you will be prompted to allow network access. Select yes.
 
