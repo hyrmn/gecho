@@ -8,24 +8,25 @@ import (
 	"os"
 )
 
-func main() {
-	port := os.Getenv("PORT")
+type options struct {
+	port string
+}
 
-	var cliPort = ""
-	flag.StringVar(&cliPort, "p", "", "The default port to listen on")
+func init() {
+	flag.StringVar(&opt.port, "p", os.Getenv("PORT"), "The default port to listen on")
 	flag.Parse()
 
-	if cliPort != "" {
-		port = cliPort
+	if opt.port == "" {
+		opt.port = "7"
 	}
+}
 
-	if port == "" {
-		port = "7"
-	}
+var opt options
 
-	log.Printf("listening on port %v", port)
+func main() {
+	log.Printf("listening on port %v", opt.port)
 
-	ln, err := net.Listen("tcp", ":"+port)
+	ln, err := net.Listen("tcp", ":"+opt.port)
 
 	if err != nil {
 		log.Fatalf("listen error, err=%s", err)
