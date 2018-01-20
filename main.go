@@ -5,15 +5,27 @@ import (
 	"io"
 	"log"
 	"net"
+	"os"
 )
 
 func main() {
-	port := flag.String("p", "7", "The default port to listen on")
+	port := os.Getenv("PORT")
+
+	var cliPort = ""
+	flag.StringVar(&cliPort, "p", "", "The default port to listen on")
 	flag.Parse()
 
-	log.Printf("listening on port %v", *port)
+	if cliPort != "" {
+		port = cliPort
+	}
 
-	ln, err := net.Listen("tcp", ":"+*port)
+	if port == "" {
+		port = "7"
+	}
+
+	log.Printf("listening on port %v", port)
+
+	ln, err := net.Listen("tcp", ":"+port)
 
 	if err != nil {
 		log.Fatalf("listen error, err=%s", err)
