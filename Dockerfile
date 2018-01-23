@@ -1,9 +1,13 @@
-FROM golang as compiler 
-RUN CGO_ENABLED=0 go get -a -ldflags '-s' github.com/hyrmn/GoTcpEchoServer
+FROM golang as compiler
+ENV GOBIN=/go/bin
+ENV GOOS=linux
+ENV CGO_ENABLED=0
+COPY main.go main.go
+RUN go get -a && go build -ldflags '-s' -o /echo-server main.go
 
 FROM scratch
 ENV PORT 7
-COPY --from=compiler /go/bin/GoTcpEchoServer ./echo-server
-
+COPY --from=compiler /echo-server /
 ENTRYPOINT ["./echo-server"]
+
 EXPOSE 7
