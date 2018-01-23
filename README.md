@@ -6,6 +6,24 @@ A very simple TCP echo server written in golang
 
 By default, the server will listen on port 7. You can override this via either an environment variable or command-line switch.
 
+### Docker
+
+From a command prompt, build the docker image
+
+```
+$> docker build -t echo .
+```
+
+This will build two docker images. The first is an untagged Golang image for building the code. The second docker image will contain the echo server in an image tagged `echo`. This technique is taken from [Adriaan de Jonge's article](https://medium.com/@adriaandejonge/simplify-the-smallest-possible-docker-image-62c0e0d342ef)
+
+You can then run the docker image. You'll need to bind the port to your host. For example, to bind localhost:7000 to port 7 on the container (the default port) 
+
+```
+$> docker run --rm -p 7000:7 echo
+```
+
+### Command-Line
+
 From a command prompt, run the main.go file
 
 ```
