@@ -1,13 +1,14 @@
 FROM golang as compiler
-ENV GOBIN=/go/bin
 ENV GOOS=linux
 ENV CGO_ENABLED=0
-COPY main.go main.go
-RUN go get -a && go build -ldflags '-s' -o /echo-server main.go
+
+COPY src/* /go/src/echo-server/
+WORKDIR /go/src/echo-server/
+RUN go build -ldflags '-s' -o /bin/echo-server
 
 FROM scratch
 ENV PORT 7
-COPY --from=compiler /echo-server /
+COPY --from=compiler /bin/echo-server /
 ENTRYPOINT ["./echo-server"]
 
 EXPOSE 7
