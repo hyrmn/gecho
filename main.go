@@ -12,6 +12,8 @@ type options struct {
 	port string
 }
 
+var opt options
+
 func init() {
 	flag.StringVar(&opt.port, "p", os.Getenv("PORT"), "The default port to listen on")
 	flag.Parse()
@@ -20,8 +22,6 @@ func init() {
 		opt.port = "7"
 	}
 }
-
-var opt options
 
 func main() {
 	log.Printf("listening on port %v", opt.port)
