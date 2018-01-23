@@ -48,8 +48,12 @@ func main() {
 
 func handleConn(conn net.Conn) {
 	defer conn.Close()
-	_, err := io.Copy(conn, conn)
-	if err != nil {
+	bytesCopied, err := io.Copy(conn, conn)
+	if err == io.EOF {
+		log.Printf("received EOF. client disconnected")
+		return
+	} else if err != nil {
 		log.Fatalf("copy error, err=%s", err)
 	}
+	log.Printf("sent %v bytes", bytesCopied)
 }
