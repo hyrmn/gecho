@@ -1,6 +1,6 @@
 # GoTcpEchoServer
 
-A very simple TCP echo server written in golang
+A (very) simple TCP echo server written in golang
 
 ## Running
 
